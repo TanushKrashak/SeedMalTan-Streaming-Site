@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeedMalTan - Home</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="header">
+    <nav>
+        <img src="images/logo.png" class="logo">
+        <div class="navbar">
+            <select id="menuer" class="language-btn" style="color: white; padding-top: 5px; border-radius: 5px; background-color: rgba(0, 0, 0, 0.324); padding-right: 3px;">
+                <option value="" disabled selected>Menu</option>
+                <option>Home </option>  
+                <option>About</option>
+                <option> Services </option>
+                <option>Contact</option>
+            </select>
+            <ul class="menu">
+                <li><a href="./Signed.html">Home</a></li>
+                <li><a href="./About Us/index1.html">About</a></li>
+                <li><a href="./Responsive Services Section/index2.html">Services</a></li>
+                <li><a href="./HTMLPage1.html">Contact</a></li>
+            </ul>
+        </div>
+        
+        <div>
+            <select class="language-btn" style="color: white; padding-top: 5px; border-radius: 5px; background-color: rgba(0, 0, 0, 0.324); padding-right: 3px;">
+                <option>English </option>  
+                <option> Spanish </option>
+                <option> French </option>
+            </select>
+            <a href="./Profile/Proflie.html"><button>My Account</button></a>  
+        </div>
+    </nav>
+    <input type="text" id="video-search" placeholder="Search for videos" style="width: 75%; padding: 15px;">
+    <div id="video-list">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/XTaD4vMfMS8" title="lionel messi 100 magical dribbles" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/LpJ6G56vSS0" title="why iso might be valorant's biggest problem" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/WkMr5zNqgwM" title="my life in india ishowspeed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Ec18vXsDHYU" title="hi me in 3 years ishowspeed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/07BctQzPvp8" title="so teyvat full map gonna be like this genshin impact" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/TT9qM5mDutQ" title="peaky blinders thomas shelby" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <video class="downvid" title="never gonna give you up rick astley" src="./videos/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4" width="320" height="240" autoplay="false" controls>Incompatible browser</video>
+    <video class="downvid" title="the spectre by alan walker" src="./videos/Alan Walker - The Spectre.mp4" width="320" height="240" autoplay="false" controls>Incompatible browser</video>
+    
+      
+    
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    const videoSearchInput = document.getElementById("video-search");
+const videoList = document.getElementById("video-list");
+const videos = [
+    { title: "my life in india ishowspeed", url:"https://www.youtube.com/embed/WkMr5zNqgwM?si=RMa2zu_Q-AALqOsy" },
+    { title: "hi me in 3 years ishowspeed", url: "https://www.youtube.com/embed/Ec18vXsDHYU?si=JbtSn9D2J0LQ8roq"  },
+    { title: "lionel messi 100 magical dribbles", url: "https://www.youtube.com/embed/XTaD4vMfMS8?si=aQbQxCaMCCOLSr_S"  },
+    { title: "why iso might be valorant's biggest problem", url: "https://www.youtube.com/embed/LpJ6G56vSS0?si=a9G0hxGhVV3fjPmo"  },
+    { title: "so teyvat full map gonna be like this genshin impact", url: "https://www.youtube.com/embed/07BctQzPvp8?si=gmuicosz3PncFyHY"},
+    { title: "peaky blinders thomas shelby", url: "https://www.youtube.com/embed/TT9qM5mDutQ?si=uGcyZKOZ503H4Eue"},
+    { title: "never gonna give you up rick astley", url: "./videos/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4"},
+    { title: "the spectre by alan walker", url: "./videos/Alan Walker - The Spectre.mp4"}
+
+];
+let currentVideo = null;
+
+function displayVideos() {
+    const searchTerm = videoSearchInput.value.toLowerCase();
+    const filteredVideos = videos.filter(video => video.title.toLowerCase().includes(searchTerm));
+
+    videoList.innerHTML = "";
+
+    if (filteredVideos.length === 0) {
+        videoList.innerHTML = "<p>No matching videos found.</p>";
+    } else {
+        filteredVideos.forEach(video => {
+            if (video.url.includes("youtube.com")) {
+                const iframe = document.createElement("iframe");
+                iframe.width = 560;
+                iframe.height = 315;
+                iframe.src = video.url;
+                iframe.frameborder = 0;
+                iframe.allowfullscreen = true;
+
+                iframe.addEventListener("click", () => {
+                    if (currentVideo) {
+                        if (currentVideo instanceof HTMLVideoElement) {
+                            currentVideo.pause();
+                        }
+                    }
+                    currentVideo = iframe;
+                });
+
+                videoList.appendChild(iframe);
+            } else {
+                const videoElement = document.createElement("video");
+                videoElement.width = 560;
+                videoElement.height = 315;
+                videoElement.src = video.url;
+                videoElement.title = video.title;
+                videoElement.controls = true;
+
+    
+                videoElement.addEventListener("click", () => {
+                    if (currentVideo) {
+                        if (currentVideo instanceof HTMLVideoElement) {
+                            currentVideo.pause();
+                        }
+                    }
+                    currentVideo = videoElement;
+                });
+
+                videoList.appendChild(videoElement);
+            }
+        });
+    }
+}
+
+videoSearchInput.addEventListener("input", displayVideos);
+displayVideos();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
